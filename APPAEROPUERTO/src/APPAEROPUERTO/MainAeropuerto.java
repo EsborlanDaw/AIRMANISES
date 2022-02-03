@@ -43,7 +43,7 @@ public class MainAeropuerto {
 
             switch (op) {
                 case 1:
-                    if (aeropuerto.hayVuelos() == false) {
+                    if (aeropuerto.hayVuelos() == true) {
                         System.err.println("NO HAY VUELOS");
                     } else {
                         aeropuerto.imprimirTodosLosVuelos();
@@ -51,7 +51,7 @@ public class MainAeropuerto {
 
                     break;
                 case 2:
-                    if (aeropuerto.hayVuelos() == false) {
+                    if (aeropuerto.hayVuelos() == true) {
                         System.err.println("NO HAY VUELOS");
                     } else {
 
@@ -86,8 +86,9 @@ public class MainAeropuerto {
                     }
 
                     break;
+
                 case 4:
-                    if (aeropuerto.hayVuelos() == false) {
+                    if (aeropuerto.hayVuelos() == true) {
                         System.err.println("NO HAY VUELOS");
                     } else {
                         aeropuerto.imprimirTodosLosVuelos();
@@ -99,7 +100,7 @@ public class MainAeropuerto {
                     }
                     break;
                 case 5:
-                    if (aeropuerto.hayVuelos() == false) {
+                    if (aeropuerto.hayVuelos() == true) {
                         System.err.println("NO HAY VUELOS");
                     } else {
                         aeropuerto.imprimirTodosLosVuelos();
@@ -125,22 +126,26 @@ public class MainAeropuerto {
                     }
                     break;
                 case 6:
-                    if (aeropuerto.hayVuelos() == false) {
+                    if (aeropuerto.hayVuelos() == true) {
                         System.err.println("NO HAY VUELOS");
                     } else {
                         aeropuerto.imprimirTodosLosVuelos();
                         System.out.println("Indica vuelo: ");
                         pos = cin.nextInt();
-                        aeropuerto.imprimirVuelos(pos);
-                        System.out.println("Indica pasajero: ");
-                        int pas = cin.nextInt();
+                        if (aeropuerto.comprobarPasajerosVacio(pos) == true) {
+                            System.err.println("NO HAY PASAJEROS");
+                        } else {
+                            aeropuerto.imprimirVuelos(pos);
+                            System.out.println("Indica pasajero: ");
+                            int pas = cin.nextInt();
 
-                        aeropuerto.eliminarPasajeroVuelo(pos, pas);
+                            aeropuerto.eliminarPasajeroVuelo(pos, pas);
+                        }
                     }
                     break;
 
                 case 7:
-                    if (aeropuerto.hayVuelos() == false) {
+                    if (aeropuerto.hayVuelos() == true) {
                         System.err.println("NO HAY VUELOS");
                     } else {
                         aeropuerto.imprimirTodosLosVuelos();
@@ -154,7 +159,7 @@ public class MainAeropuerto {
 
                     break;
                 case 8:
-                    if (aeropuerto.hayVuelos() == false) {
+                    if (aeropuerto.hayVuelos() == true) {
                         System.err.println("NO HAY VUELOS");
                     } else {
                         System.out.println("Introduce numero de vuelo: ");
@@ -167,31 +172,38 @@ public class MainAeropuerto {
 
                     break;
                 case 9:
-                    if (aeropuerto.hayVuelos() == false) {
+                    if (aeropuerto.hayVuelos() == true) {
                         System.err.println("NO HAY VUELOS");
                     } else {
                         aeropuerto.imprimirTodosLosVuelos();
                         System.out.println("Indica vuelo: ");
                         pos = cin.nextInt();
-                        cin.nextLine();
+                        if (aeropuerto.comprobarPasajerosVacio(pos) == true) {
+                            System.err.println("NO HAY PASAJEROS");
+                        } else {
+                            cin.nextLine();
+                            System.out.println("Introduce id pasajero: ");
+                            id = cin.nextLine();
 
-                        System.out.println("Introduce id pasajero: ");
-                        id = cin.nextLine();
+                            Vuelo b = aeropuerto.buscarPasajerosVuelo(pos, id);
 
-                        Vuelo b = aeropuerto.buscarPasajerosVuelo(pos, id);
-
-                        b.imprimirVuelo();
+                            b.imprimirVuelo();
+                        }
                     }
 
                     break;
                 case 10:
-                    if (aeropuerto.hayVuelos() == false) {
+                    if (aeropuerto.hayVuelos() == true) {
                         System.err.println("NO HAY VUELOS");
                     } else {
                         aeropuerto.imprimirTodosLosVuelos();
                         System.out.println("Indica vuelo: ");
                         pos = cin.nextInt();
-                        aeropuerto.mostrarAuxiliares(pos);
+                        if (aeropuerto.comprobarPasajerosVacio(pos) == true) {
+                            System.err.println("NO HAY PASAJEROS");
+                        } else {
+                            aeropuerto.mostrarAuxiliares(pos);
+                        }
                     }
                     break;
 
@@ -200,4 +212,5 @@ public class MainAeropuerto {
         } while (op != 0);
 
     }
+
 }

@@ -17,42 +17,59 @@ public class Aeropuerto {
         vuelos = new Vuelo[100];
         total = 0;
     }
-    public boolean hayVuelos(){
-        
+
+    public boolean hayVuelos() {
+
         if (total == 0) {
             return true;
-        }else
+        } else {
             return false;
+        }
     }
 
-    public boolean vuelosMaximo(){
+    public boolean vuelosMaximo() {
         if (total == 100) {
             return true;
-        }else
+        } else {
             return false;
+        }
     }
+
     public boolean comprobarPasajerosVacio(int pos) {
         if (vuelos[pos].vueloVacio() == true) {
             return true;
-        }else
+        } else {
             return false;
+        }
     }
+
     public boolean comprobarPasajerosLleno(int pos) {
-        if (vuelos[pos].vueloLleno()== true) {
+        if (vuelos[pos].vueloLleno() == true) {
             return true;
-        }else
+        } else {
             return false;
+        }
     }
-    
+
     public void imprimirVuelos(int pos) {
         vuelos[pos].imprimirVuelo();
     }
 
     public void imprimirTodosLosVuelos() {
         for (int i = 0; i < total; i++) {
+            System.out.print(i + ". ");
             vuelos[i].imprimirVuelo();
         }
 
+    }
+
+    public boolean vueloRepetido(Vuelo v) {
+        for (int i = 0; i < total; i++) {
+            if (v.getNvuelo() == vuelos[i].getNvuelo()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void imprimirPasajeros(int pos) {
@@ -60,24 +77,33 @@ public class Aeropuerto {
     }
 
     public void agregarVuelo(Vuelo v) {
-
+        
+        if (vueloRepetido(v) == false)
+        {
             vuelos[total] = v;
             total++;
             System.err.println("SE HA AGREGADO UN VUELO");
+        }
+        
+        else
+            System.out.println("VUELO EXISTENTE.");
 
     }
 
     public void cancelarVuelo(int pos) {
-            for (int i = pos; i < total - 1; i++) {
-                vuelos[i] = vuelos[i + 1];
-            }
+        for (int i = pos; i < total - 1; i++) {
+            vuelos[i] = vuelos[i + 1];
+        }
 
-            total--;
-        
+        total--;
+
     }
 
     public void agregarPasajeroVuelo(int pos, Pasajero p) {
-        vuelos[pos].agregarPasajero(p);
+        if (vuelos[pos].pasajeroRepetido(p) == false) {
+            vuelos[pos].agregarPasajero(p);
+        }else
+            System.err.println("PASAJERO EXISTENTE");
     }
 
     public void eliminarPasajeroVuelo(int pos, int pospas) {
