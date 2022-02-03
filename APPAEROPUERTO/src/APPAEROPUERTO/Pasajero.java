@@ -21,7 +21,7 @@ public class Pasajero {
         this.id = id;
         setTripulante(tripulante);
     }
-
+   
     public String getNombre() {
         return nombre;
     }

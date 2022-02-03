@@ -89,7 +89,7 @@ public class Vuelo {
     }
 
     public void agregarPasajero(Pasajero p) {
-
+ 
         pasajeros[total] = p;
         total++;
 

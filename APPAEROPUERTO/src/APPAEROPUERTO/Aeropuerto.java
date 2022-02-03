@@ -52,6 +52,7 @@ public class Aeropuerto {
     }
 
     public void imprimirVuelos(int pos) {
+        
         vuelos[pos].imprimirVuelo();
     }
 

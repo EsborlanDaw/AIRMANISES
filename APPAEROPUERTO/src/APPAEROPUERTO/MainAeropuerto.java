@@ -113,6 +113,7 @@ public class MainAeropuerto {
                             System.err.println("PASAJEROS MAXIMOS ALCANZADOS");
                         } else {
 
+                            
                             System.out.println("Nombre: ");
                             n = cin.nextLine();
                             System.out.println("ID: ");
